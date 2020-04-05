@@ -11,7 +11,6 @@
 
 #include "aligned_memory.h"
 #include "build_config.h"
-#include "macros.h"
 
 namespace base {
 
@@ -143,6 +142,10 @@ class StackContainer {
     container_.reserve(stack_capacity);
   }
 
+  /// StackContainer is neither copy- nor move-constructable.
+  StackContainer(const StackContainer&) = delete;
+  StackContainer& operator=(const StackContainer&) = delete;
+
   // Getters for the actual container.
   //
   // Danger: any copies of this made using the copy constructor must have
@@ -168,9 +171,6 @@ class StackContainer {
   typename Allocator::Source stack_data_;
   Allocator allocator_;
   ContainerType container_;
-
- private:
-  DISALLOW_COPY_AND_ASSIGN(StackContainer);
 };
 
 // StackVector -----------------------------------------------------------------
