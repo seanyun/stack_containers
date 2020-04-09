@@ -9,7 +9,7 @@ int main() {
   v->resize(10, 0);
   std::iota(v->begin(), v->end(), 0);
 
-  for_each(v->begin(), v->end(), [](int i) { std::cout << i << " "; });
+  std::for_each(v->begin(), v->end(), [](int i) { std::cout << i << " "; });
   std::cout << std::endl;
 
   return 0;
